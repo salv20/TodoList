@@ -1,11 +1,27 @@
 import { useState } from "react";
 import Button from "./Button";
-const Input = () => {
+const Input = ({ setTask, task }) => {
   const [addTask, setaddTask] = useState("");
   const [addTime, setaddTime] = useState("");
+
+  const clickFun = () => {
+    const id = Math.floor(Math.random() * 10000);
+    setTask(...task);
+    if (!addTask) {
+      alert("please add task");
+      setTask(task);
+    } else {
+      setTask([
+        ...task,
+        { event: addTask, time: addTime, id: id, checked: false },
+      ]);
+      setaddTask("");
+      setaddTime("");
+    }
+  };
   return (
     <div className="input">
-      <label htmlFor="">
+      <label htmlFor="task">
         task:
         <input
           type="text"
@@ -17,7 +33,7 @@ const Input = () => {
         />
       </label>
 
-      <label htmlFor="" className="input-two">
+      <label htmlFor="time" className="input-two">
         time:
         <input
           type="text"
@@ -28,7 +44,7 @@ const Input = () => {
           }}
         />
       </label>
-      <Button />
+      <Button onclick={clickFun} />
     </div>
   );
 };

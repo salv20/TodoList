@@ -88,3 +88,7 @@ label {
   margin-top: 10px;
   margin-right: 3rem;
 }
+.empty {
+  text-align: center;
+  text-transform: capitalize;
+}

@@ -1,32 +1,19 @@
-import { useState } from "react";
-
 import { FaTrashAlt } from "react-icons/fa";
 
-const Task = () => {
-  const [tasks, setTasks] = useState([
-    {
-      event: "clean the house",
-      time: "7am",
-      checked: true,
-      id: 1,
-    },
-    {
-      event: "coding",
-      time: "8am",
-      checked: false,
-      id: 2,
-    },
-    { event: "social media", time: "5pm", checked: false, id: 3 },
-  ]);
+const Task = ({ tasks, checkFunction, deleteTask }) => {
   return (
     <div className="container">
       {tasks.map((task) => (
         <main key={task.id} className="list-container">
-          <input type="checkbox" checked={task.checked} />
+          <input
+            type="checkbox"
+            checked={task.checked}
+            onChange={() => checkFunction(task.id)}
+          />
           <p>
             {task.event} : <span>{task.time}</span>
           </p>
-          <FaTrashAlt className="faTrash" />
+          <FaTrashAlt className="faTrash" onClick={() => deleteTask(task.id)} />
         </main>
       ))}
     </div>
