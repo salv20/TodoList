@@ -37,7 +37,11 @@ function App() {
     <div className="App">
       <Header showInput={showTaskAdd} showAdd={showAdd} />
       {showAdd && <Input setTask={setTasks} task={tasks} />}
-      <Search searchState={searchState} searchFunc={searchFunc} />
+      {tasks.length ? (
+        <Search searchState={searchState} searchFunc={searchFunc} />
+      ) : (
+        <h2 className="empty">no task added</h2>
+      )}
       <Task
         tasks={tasks.filter((task) =>
           task.event
